@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="com.qualco.nation.models.entities.RegionAreasEntity">
+        <table name="region_areas" schema="nation" catalog=""/>
+        <attributes>
+            <id name="regionName">
+                <column name="region_name" length="100"/>
+            </id>
+            <basic name="regionArea">
+                <column name="region_area" precision="2"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="com.qualco.nation.models.entities.Countries">
+        <table name="countries" schema="nation" catalog=""/>
+        <attributes>
+            <id name="countryId">
+                <column name="country_id" precision="11"/>
+            </id>
+            <basic name="name">
+                <column name="name" nullable="false" length="50"/>
+            </basic>
+            <basic name="area">
+                <column name="area" precision="2"/>
+            </basic>
+            <basic name="nationalDay">
+                <column name="national_day" nullable="false" precision="-1"/>
+            </basic>
+            <basic name="countryCode2">
+                <column name="country_code2" length="2"/>
+            </basic>
+            <basic name="countryCode3">
+                <column name="country_code3" length="3"/>
+            </basic>
+            <basic name="regionId">
+                <column name="region_id" precision="11"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>

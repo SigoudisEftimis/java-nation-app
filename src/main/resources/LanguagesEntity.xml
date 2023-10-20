@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="com.qualco.nation.models.entities.LanguagesEntity">
+        <table name="languages" schema="nation" catalog=""/>
+        <attributes>
+            <id name="languageId">
+                <column name="language_id" precision="11"/>
+            </id>
+            <basic name="language">
+                <column name="language" length="50"/>
+            </basic>
+            <one-to-many name="countryLanguagesByLanguageId" mapped-by="languagesByLanguageId"
+                         target-entity="com.qualco.nation.models.entities.CountryLanguagesEntity"/>
+        </attributes>
+    </entity>
+</entity-mappings>

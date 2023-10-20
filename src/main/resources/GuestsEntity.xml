@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="com.qualco.nation.models.entities.GuestsEntity">
+        <table name="guests" schema="nation" catalog=""/>
+        <attributes>
+            <id name="guestId">
+                <column name="guest_id" precision="11"/>
+            </id>
+            <basic name="name">
+                <column name="name" length="100"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.qualco.nation.models.entities.Continents">
+        <table name="continents" schema="nation" catalog=""/>
+        <attributes>
+            <id name="continentId">
+                <column name="continent_id" precision="11"/>
+            </id>
+            <basic name="name">
+                <column name="name"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.qualco.nation.models.entities.Countries">
+        <table name="countries" schema="nation" catalog=""/>
+        <attributes>
+            <id name="countryId">
+                <column name="country_id" precision="11"/>
+            </id>
+            <basic name="name">
+                <column name="name" nullable="false" length="50"/>
+            </basic>
+            <basic name="area">
+                <column name="area" precision="2"/>
+            </basic>
+            <basic name="nationalDay">
+                <column name="national_day" nullable="false" precision="-1"/>
+            </basic>
+            <basic name="countryCode2">
+                <column name="country_code2" length="2"/>
+            </basic>
+            <basic name="countryCode3">
+                <column name="country_code3" length="3"/>
+            </basic>
+            <basic name="regionId">
+                <column name="region_id" precision="11"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.qualco.nation.models.entities.CountryLanguages">
+        <table name="country_languages" schema="nation" catalog=""/>
+        <id-class class="com.qualco.nation.models.entities.CountryLanguagesPK"/>
+        <attributes>
+            <id name="countryId">
+                <column name="country_id" precision="11"/>
+            </id>
+            <id name="languageId">
+                <column name="language_id" precision="11"/>
+            </id>
+            <basic name="official">
+                <column name="official" precision="1"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.qualco.nation.models.entities.Continents">
+        <table name="continents" schema="nation" catalog=""/>
+        <attributes>
+            <id name="continentId">
+                <column name="continent_id" precision="11"/>
+            </id>
+            <basic name="name">
+                <column name="name"/>
+            </basic>
+            <one-to-many name="regionsByContinentId" mapped-by="continentsByContinentId"
+                         target-entity="com.qualco.nation.models.entities.Regions"/>
+        </attributes>
+    </entity>
+    <entity class="com.qualco.nation.models.entities.Countries">
+        <table name="countries" schema="nation" catalog=""/>
+        <attributes>
+            <id name="countryId">
+                <column name="country_id" precision="11"/>
+            </id>
+            <basic name="name">
+                <column name="name" nullable="false" length="50"/>
+            </basic>
+            <basic name="area">
+                <column name="area" precision="2"/>
+            </basic>
+            <basic name="nationalDay">
+                <column name="national_day" nullable="false" precision="-1"/>
+            </basic>
+            <basic name="countryCode2">
+                <column name="country_code2" length="2"/>
+            </basic>
+            <basic name="countryCode3">
+                <column name="country_code3" length="3"/>
+            </basic>
+            <basic name="regionId">
+                <column name="region_id" precision="11"/>
+            </basic>
+            <many-to-one name="regionsByRegionId" optional="true"
+                         target-entity="com.qualco.nation.models.entities.Regions">
+                <join-column name="region_id" referenced-column-name="region_id"/>
+            </many-to-one>
+            <one-to-many name="countryLanguagesByCountryId" mapped-by="countriesByCountryId"
+                         target-entity="com.qualco.nation.models.entities.CountryLanguages"/>
+            <one-to-many name="countryStatsByCountryId" mapped-by="countriesByCountryId"
+                         target-entity="com.qualco.nation.models.entities.CountryStats"/>
+        </attributes>
+    </entity>
+    <entity class="com.qualco.nation.models.entities.CountryLanguages">
+        <table name="country_languages" schema="nation" catalog=""/>
+        <id-class class="com.qualco.nation.models.entities.CountryLanguagesPK"/>
+        <attributes>
+            <id name="countryId">
+                <column name="country_id" precision="11"/>
+            </id>
+            <id name="languageId">
+                <column name="language_id" precision="11"/>
+            </id>
+            <basic name="official">
+                <column name="official" precision="1"/>
+            </basic>
+            <many-to-one name="countriesByCountryId" optional="true"
+                         target-entity="com.qualco.nation.models.entities.Countries">
+                <join-column name="country_id" referenced-column-name="country_id"/>
+            </many-to-one>
+            <many-to-one name="languagesByLanguageId" optional="true"
+                         target-entity="com.qualco.nation.models.entities.Languages">
+                <join-column name="language_id" referenced-column-name="language_id"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+    <entity class="com.qualco.nation.models.entities.CountryStats">
+        <table name="country_stats" schema="nation" catalog=""/>
+        <id-class class="com.qualco.nation.models.entities.CountryStatsPK"/>
+        <attributes>
+            <id name="countryId">
+                <column name="country_id" precision="11"/>
+            </id>
+            <id name="year">
+                <column name="year" precision="11"/>
+            </id>
+            <basic name="population">
+                <column name="population" nullable="false" precision="11"/>
+            </basic>
+            <basic name="gdp">
+                <column name="gdp" nullable="false" precision="15"/>
+            </basic>
+            <many-to-one name="countriesByCountryId" optional="true"
+                         target-entity="com.qualco.nation.models.entities.Countries">
+                <join-column name="country_id" referenced-column-name="country_id"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+    <entity class="com.qualco.nation.models.entities.Guests">
+        <table name="guests" schema="nation" catalog=""/>
+        <attributes>
+            <id name="guestId">
+                <column name="guest_id" precision="11"/>
+            </id>
+            <basic name="name">
+                <column name="name" length="100"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.qualco.nation.models.entities.Languages">
+        <table name="languages" schema="nation" catalog=""/>
+        <attributes>
+            <id name="languageId">
+                <column name="language_id" precision="11"/>
+            </id>
+            <basic name="language">
+                <column name="language" length="50"/>
+            </basic>
+            <one-to-many name="countryLanguagesByLanguageId" mapped-by="languagesByLanguageId"
+                         target-entity="com.qualco.nation.models.entities.CountryLanguages"/>
+        </attributes>
+    </entity>
+    <entity class="com.qualco.nation.models.entities.RegionAreas">
+        <table name="region_areas" schema="nation" catalog=""/>
+        <attributes>
+            <id name="regionName">
+                <column name="region_name" length="100"/>
+            </id>
+            <basic name="regionArea">
+                <column name="region_area" precision="2"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.qualco.nation.models.entities.Regions">
+        <table name="regions" schema="nation" catalog=""/>
+        <attributes>
+            <id name="regionId">
+                <column name="region_id" precision="11"/>
+            </id>
+            <basic name="name">
+                <column name="name" length="100"/>
+            </basic>
+            <basic name="continentId">
+                <column name="continent_id" precision="11"/>
+            </basic>
+            <many-to-one name="continentsByContinentId" optional="true"
+                         target-entity="com.qualco.nation.models.entities.Continents">
+                <join-column name="continent_id" referenced-column-name="continent_id"/>
+            </many-to-one>
+            <one-to-many name="countriesByRegionId" mapped-by="regionsByRegionId"
+                         target-entity="com.qualco.nation.models.entities.Countries"/>
+        </attributes>
+    </entity>
+    <entity class="com.qualco.nation.models.entities.Vips">
+        <table name="vips" schema="nation" catalog=""/>
+        <attributes>
+            <id name="vipId">
+                <column name="vip_id" precision="11"/>
+            </id>
+            <basic name="name">
+                <column name="name" length="100"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>

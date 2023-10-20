@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="com.qualco.nation.models.entities.RegionsEntity">
+        <table name="regions" schema="nation" catalog=""/>
+        <attributes>
+            <id name="regionId">
+                <column name="region_id" precision="11"/>
+            </id>
+            <basic name="name">
+                <column name="name" length="100"/>
+            </basic>
+            <basic name="continentId">
+                <column name="continent_id" precision="11"/>
+            </basic>
+            <many-to-one name="continentsByContinentId" optional="true"
+                         target-entity="com.qualco.nation.models.entities.ContinentsEntity">
+                <join-column name="continent_id" referenced-column-name="continent_id"/>
+            </many-to-one>
+            <one-to-many name="countriesByRegionId" mapped-by="regionsByRegionId"
+                         target-entity="com.qualco.nation.models.entities.CountriesEntity"/>
+        </attributes>
+    </entity>
+</entity-mappings>

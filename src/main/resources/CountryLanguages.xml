@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="com.qualco.nation.models.entities.CountryLanguages">
+        <table name="country_languages" schema="nation" catalog=""/>
+        <id-class class="com.qualco.nation.models.entities.CountryLanguagesPK"/>
+        <attributes>
+            <id name="countryId">
+                <column name="country_id" precision="11"/>
+            </id>
+            <id name="languageId">
+                <column name="language_id" precision="11"/>
+            </id>
+            <basic name="official">
+                <column name="official" precision="1"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>
