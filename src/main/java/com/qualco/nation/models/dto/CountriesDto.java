@@ -1,8 +1,5 @@
 package com.qualco.nation.models.dto;
 
-import com.qualco.nation.models.dto.CountryLanguagesDto;
-import com.qualco.nation.models.dto.CountryStatsDto;
-import com.qualco.nation.models.dto.RegionsDto;
 import com.qualco.nation.models.entities.Countries;
 
 import java.io.Serializable;

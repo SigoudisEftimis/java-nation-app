@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CountryStatsRepository extends JpaRepository<CountryStats, Long> {
-    @Query("SELECT NEW com.qualco.nation.models.views.implementations.CountryStatsViewImpl(c.name, r.name, co.name, cs.year, cs.population, cs.gdp) " +
+    @Query("SELECT NEW com.qualco.nation.models.views.implementations.CountryStatsViewImpl(co.name, r.name, c.name, cs.year, cs.population, cs.gdp) " +
             "FROM CountryStats cs " +
             "JOIN cs.country c " +
             "JOIN cs.country.regions r " +

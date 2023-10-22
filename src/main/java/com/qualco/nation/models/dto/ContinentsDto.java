@@ -1,6 +1,5 @@
 package com.qualco.nation.models.dto;
 
-import com.qualco.nation.models.dto.RegionsDto;
 import com.qualco.nation.models.entities.Continents;
 
 import java.io.Serializable;

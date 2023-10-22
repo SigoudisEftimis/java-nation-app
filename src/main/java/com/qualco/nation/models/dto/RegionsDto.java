@@ -1,11 +1,9 @@
 package com.qualco.nation.models.dto;
 
-import com.qualco.nation.models.entities.Regions;
-
 import java.io.Serializable;
 
 /**
- * DTO for {@link Regions}
+ * DTO for {@link com.qualco.nation.models.entities.Regions}
  */
 public class RegionsDto implements Serializable {
     private final int regionId;

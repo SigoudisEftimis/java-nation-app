@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CountriesRepository extends JpaRepository<Countries, Integer> {
 
-    @Query("SELECT c.name AS name, c.area AS area, c.countryCode2 AS countryCode2 FROM Countries c")
+    @Query("SELECT c.countryId as id, c.name AS name, c.area AS area, c.countryCode2 AS countryCode2 FROM Countries c")
     Page<CountryView> getCountries(Pageable pageable);
 
     @Query("SELECT c.name as name, c.countryCode3 as countryCode3, cs.year as year, cs.population as population, cs.gdp as gdp " +
@@ -25,7 +25,7 @@ public interface CountriesRepository extends JpaRepository<Countries, Integer> {
             "WHERE cs2.country.countryId = c.countryId)")
     Page<CountryGdpPopulationRatioView> findCountriesMaxGdpPerPopulationRatio(Pageable pageable);
 
-    @Query("SELECT NEW com.qualco.nation.models.views.implementations.CountryStatsViewImpl(c.name, r.name, co.name, cs.year, cs.population, cs.gdp) " +
+    @Query("SELECT NEW com.qualco.nation.models.views.implementations.CountryStatsViewImpl(co.name, r.name, c.name, cs.year, cs.population, cs.gdp) " +
             "FROM Countries c " +
             "JOIN c.regions r " +
             "JOIN c.regions.continents co " +
